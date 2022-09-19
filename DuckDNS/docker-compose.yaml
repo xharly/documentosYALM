@@ -1,0 +1,8 @@
+noip:
+  image: linuxserver/duckdns
+  container_name: ducksdns
+  environment:
+    - TZ=America/Mexico_City
+    - SUBDOMAINS=karlozhome
+    - TOKEN=689ed19e-7200-4cd4-89f0-4e7d75b29359
+  restart: always
