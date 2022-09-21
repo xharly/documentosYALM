@@ -5,19 +5,19 @@ services:
     container_name: wireguard
     cap_add:
       - NET_ADMIN
-      - SYS_MODULE
+      - SYS_MODULE #Comunicación en red entre el contendor y el anfitrión
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Mexico_City
-      - SERVERURL=1.1.1.1 #optional
+      - SERVERURL=1.1.1.1 #optional, IP del servidor, el contendor tiene una funcion para conocer la IP publica.
       - SERVERPORT=51820 #optional
-      - PEERS=2 #optional
+      - PEERS=2 #optional, numero de conexiones
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
     volumes:
-      - /root/wireguard:/config
-      - /lib/modules:/lib/modules
+      - ./configwireguard:/config #Almacena los archivos de configuracion en el equipo anfitrion
+      - /lib/modules:/lib/modules #Instalación de modulos del kernel de linux 5.6
       - /usr/src:/usr/src
     ports:
       - 51820:51820/udp
